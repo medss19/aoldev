@@ -68,6 +68,12 @@ export default function Header() {
             >
               Careers
             </Link>
+            <Link
+              href="/contact"
+              className="text-gray-600 hover:text-primary transition-colors hover:scale-105"
+            >
+              Contact Us
+            </Link>
             {session ? (
               <>
                 <span className="text-gray-600">Welcome, {session.user?.email}</span>
@@ -135,6 +141,12 @@ export default function Header() {
                 className="text-gray-600 hover:text-primary transition-colors"
               >
                 Careers
+              </Link>
+              <Link
+                href="/contact"
+                className="text-gray-600 hover:text-primary transition-colors"
+              >
+                Contact Us
               </Link>
               {session ? (
                 <>
