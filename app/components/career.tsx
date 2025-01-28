@@ -69,6 +69,7 @@ export default function OpportunitiesPage() {
         const matchesSearch = 
             job.title.toLowerCase().includes(searchTerm) ||
             job.description.toLowerCase().includes(searchTerm) ||
+            job.location.toLowerCase().includes(searchTerm) ||
             job.skills.some(skill => skill.toLowerCase().includes(searchTerm));
 
         const matchesFilters = 
