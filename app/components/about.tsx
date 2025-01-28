@@ -1,11 +1,8 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import Link from 'next/link';
 import {
-    FileText,
     Users,
-    Briefcase,
     HelpCircle,
     Mail,
     Code,
@@ -17,35 +14,11 @@ import {
     Layers,
     ArrowRight,
     CheckCircle,
-    Search,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
-
-// Career Opportunities Section Data
-const CareerOpportunities = [
-    {
-        title: 'Frontend Developer',
-        type: 'Full-time',
-        description: 'Build intuitive user interfaces for our AI-powered platform.',
-        skills: ['React', 'TypeScript', 'Tailwind CSS'],
-    },
-    {
-        title: 'AI Research Scientist',
-        type: 'Remote',
-        description: 'Advance AI capabilities through machine learning research.',
-        skills: ['Python', 'Machine Learning', 'Deep Learning'],
-    },
-    {
-        title: 'Technical Writer',
-        type: 'Part-time',
-        description: 'Create comprehensive documentation for our technical ecosystem.',
-        skills: ['Technical Writing', 'Markdown', 'API Documentation'],
-    },
-];
 
 // Contribution Guidelines Section Data
 const ContributionGuidelines = [
@@ -178,13 +151,9 @@ const FAQs = [
     },
 ];
 
-
-
 export default function CareersContent() {
     const [activeSection, setActiveSection] = useState({});
-    const [searchQuery, setSearchQuery] = useState('');
     const cultureRef = useRef(null);
-    const opportunitiesRef = useRef(null);
     const router = useRouter();
 
     const toggleSection = (sectionTitle, subsectionIndex) => {
@@ -197,21 +166,6 @@ export default function CareersContent() {
     const scrollToCulture = () => {
         cultureRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
-
-    const scrollToOpportunities = () => {
-        opportunitiesRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    // Filter jobs based on search query
-    const filteredJobs = CareerOpportunities.filter(job => {
-        const searchTerm = searchQuery.toLowerCase();
-        return (
-            job.title.toLowerCase().includes(searchTerm) ||
-            job.description.toLowerCase().includes(searchTerm) ||
-            job.type.toLowerCase().includes(searchTerm) ||
-            job.skills.some(skill => skill.toLowerCase().includes(searchTerm))
-        );
-    });
 
     return (
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -228,7 +182,7 @@ export default function CareersContent() {
                         <Button
                             size="lg"
                             className="bg-purple-600 hover:bg-purple-700 text-white group"
-                            onClick={scrollToOpportunities}
+                            onClick={() => router.push('/career')}
                         >
                             Explore Opportunities <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </Button>
@@ -299,65 +253,7 @@ export default function CareersContent() {
                 </div>
             </section>
 
-
-            {/* Career Opportunities with Search Bar */}
-            <section ref={opportunitiesRef} className="py-16">
-                <h2 className="text-3xl font-bold mb-8 text-center text-purple-700 flex items-center justify-center">
-                    <Briefcase className="inline-block mr-3 text-purple-500" />
-                    Current Opportunities
-                </h2>
-
-                {/* Search Bar */}
-                <div className="max-w-md mx-auto mb-8">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                        <Input
-                            type="text"
-                            placeholder="Search by job title, skills, or type..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10 w-full border-2 border-purple-200 focus:border-purple-500 rounded-lg"
-                        />
-                    </div>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {filteredJobs.length > 0 ? (
-                        filteredJobs.map((job, index) => (
-                            <Card key={index} className="transition-shadow duration-300 ease-in-out hover:shadow-lg">
-                                <CardHeader>
-                                    <CardTitle className="text-xl text-purple-800">{job.title}</CardTitle>
-                                    <p className="text-sm text-gray-500">{job.type}</p>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="mb-4 text-gray-700">{job.description}</p>
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {job.skills.map((skill, skillIndex) => (
-                                            <span
-                                                key={skillIndex}
-                                                className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <Button
-                                        variant="outline"
-                                        className="w-full border-purple-500 text-purple-700 hover:bg-purple-50 transition-colors duration-200"
-                                    >
-                                        Apply Now
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        ))
-                    ) : (
-                        <div className="col-span-3 text-center py-8">
-                            <p className="text-gray-500">No jobs match your search criteria.</p>
-                        </div>
-                    )}
-                </div>
-            </section>
-
+            <Separator className="my-12 bg-purple-100" />
 
             <section className="mb-16">
                 <div className="text-center mb-12">
@@ -423,6 +319,8 @@ export default function CareersContent() {
                     </CardContent>
                 </Card>
             </section>
+
+            <Separator className="my-12 bg-purple-100" />
 
             <section className="mb-16">
                 <div className="text-center mb-12">

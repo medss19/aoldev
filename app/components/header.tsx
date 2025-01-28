@@ -63,10 +63,16 @@ export default function Header() {
               Pricing
             </Link>
             <Link
-              href="/careers"
+              href="/career"
               className="text-black-600 hover:text-primary transition-colors hover:scale-105"
             >
-              Careers
+              Career
+            </Link>
+            <Link
+              href="/about"
+              className="text-black-600 hover:text-primary transition-colors hover:scale-105"
+            >
+              About Us
             </Link>
             <Link
               href="/contact"
@@ -137,10 +143,16 @@ export default function Header() {
                 Pricing
               </Link>
               <Link
-                href="/careers"
+                href="/career"
+                className="text-black-600 hover:text-primary transition-colors hover:scale-105"
+              >
+                Career
+              </Link>
+              <Link
+                href="/aboutus"
                 className="text-gray-600 hover:text-primary transition-colors"
               >
-                Careers
+                About Us
               </Link>
               <Link
                 href="/contact"

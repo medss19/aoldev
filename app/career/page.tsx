@@ -1,9 +1,9 @@
-import CareersContent from '../components/careers'
+import CareerOpportunities from '../components/career'
 
-export default function CareersPage() {
+export default function OpportunitiesPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <CareersContent />
+      <CareerOpportunities />
     </div>
   )
 }
