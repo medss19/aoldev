@@ -44,7 +44,7 @@ const ApplicationForm = () => {
         {/* Back Button */}
         <Button
           variant="ghost"
-          className="mb-6 text-purple-600 hover:text-purple-800"
+          className="mt-20 text-purple-600 hover:text-purple-800"
           onClick={() => window.history.back()}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -62,7 +62,7 @@ const ApplicationForm = () => {
             </p>
             <Button
               variant="ghost"
-              className="mt-4 text-purple-600 hover:text-purple-800"
+              className="mt-20 text-purple-600 hover:text-purple-800"
               onClick={() => window.history.back()}
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -114,7 +114,7 @@ const ApplicationForm = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Button
         variant="ghost"
-        className="mb-6 text-purple-600 hover:text-purple-800"
+        className="mt-20 text-purple-600 hover:text-purple-800"
         onClick={() => window.history.back()}
       >
         <ArrowLeft className="w-4 h-4 mr-2" />

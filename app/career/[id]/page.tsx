@@ -40,7 +40,7 @@ const JobDetailPage = ({ params }) => {
             {/* Back Button */}
             <Button
                 variant="ghost"
-                className="mb-6 text-purple-600 hover:text-purple-800"
+                className="mt-20 text-purple-600 hover:text-purple-800"
                 onClick={() => window.history.back()}
             >
                 <ArrowLeft className="w-4 h-4 mr-2" />
