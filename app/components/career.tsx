@@ -7,54 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-
-// Career Opportunities Data with enhanced details
-const CareerOpportunities = [
-    {
-        title: 'Frontend Developer',
-        type: 'Full-time',
-        location: 'Remote',
-        department: 'Engineering',
-        experience: 'Mid-Level',
-        description: 'Build intuitive user interfaces for our AI-powered platform.',
-        skills: ['React', 'TypeScript', 'Tailwind CSS'],
-    },
-    {
-        title: 'AI Research Scientist',
-        type: 'Remote',
-        location: 'United States',
-        department: 'Research',
-        experience: 'Senior',
-        description: 'Advance AI capabilities through machine learning research.',
-        skills: ['Python', 'Machine Learning', 'Deep Learning'],
-    },
-    {
-        title: 'Technical Writer',
-        type: 'Part-time',
-        location: 'United Kingdom',
-        department: 'Documentation',
-        experience: 'Entry-Level',
-        description: 'Create comprehensive documentation for our technical ecosystem.',
-        skills: ['Technical Writing', 'Markdown', 'API Documentation'],
-    },
-];
-
-// Filter categories
-const filters = {
-    department: [
-        'Engineering',
-        'Research',
-        'Documentation',
-        'Product',
-        'Marketing',
-        'Sales',
-    ],
-    location: ['Remote', 'United States', 'United Kingdom', 'India', 'Germany'],
-    type: ['Full-time', 'Part-time', 'Contract'],
-    experience: ['Entry-Level', 'Mid-Level', 'Senior', 'Lead'],
-};
+import { useRouter } from 'next/navigation'; 
+import { getAllJobs, filters } from '../career/jobs-data';
 
 export default function OpportunitiesPage() {
+    const router = useRouter(); 
+    const CareerOpportunities = getAllJobs();
     const [searchQuery, setSearchQuery] = useState('');
     const [activeFilters, setActiveFilters] = useState({
         department: [],
@@ -66,13 +24,13 @@ export default function OpportunitiesPage() {
     // Filter jobs based on search query and active filters
     const filteredJobs = CareerOpportunities.filter(job => {
         const searchTerm = searchQuery.toLowerCase();
-        const matchesSearch = 
+        const matchesSearch =
             job.title.toLowerCase().includes(searchTerm) ||
             job.description.toLowerCase().includes(searchTerm) ||
             job.location.toLowerCase().includes(searchTerm) ||
             job.skills.some(skill => skill.toLowerCase().includes(searchTerm));
 
-        const matchesFilters = 
+        const matchesFilters =
             (activeFilters.department.length === 0 || activeFilters.department.includes(job.department)) &&
             (activeFilters.location.length === 0 || activeFilters.location.includes(job.location)) &&
             (activeFilters.type.length === 0 || activeFilters.type.includes(job.type)) &&
@@ -123,8 +81,8 @@ export default function OpportunitiesPage() {
                                 <Filter className="w-5 h-5 mr-2" /> Filters
                             </h2>
                             {Object.values(activeFilters).some(arr => arr.length > 0) && (
-                                <Button 
-                                    variant="ghost" 
+                                <Button
+                                    variant="ghost"
                                     size="sm"
                                     onClick={clearFilters}
                                     className="text-purple-600 hover:text-purple-800"
@@ -213,7 +171,8 @@ export default function OpportunitiesPage() {
                                             ))}
                                         </div>
                                         <Button
-                                            className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-200"
+                                            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                                            onClick={() => router.push(`/career/${job.id}`)}
                                         >
                                             View Position
                                         </Button>
